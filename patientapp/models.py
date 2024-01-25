@@ -238,6 +238,8 @@ class MedicalHistoryy(models.Model):
     date_created = models.DateTimeField(default=datetime.now, blank=True)
 
     patient = models.ForeignKey(Patient, on_delete=models.DO_NOTHING, null=True)
+    patientAccount = models.ForeignKey(Account, on_delete=models.DO_NOTHING, null=True)
+    
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, null=True)
     class Meta:
         verbose_name_plural = "MedicalHistories"

@@ -455,7 +455,6 @@ def booking(request, doctor_id):
     
 
 def medical_history(request):
-
     current_user = request.user
     try:
         current_doctor = get_object_or_404(Doctor, user=current_user)
@@ -476,17 +475,25 @@ def medical_history(request):
         lines.append(" ")
         lines.append("      Patient Medical History           ")
         lines.append(" ")
-        lines.append("First Name: "+str(hist.first_name))
-        lines.append("Last Name: "+str(hist.last_name))
+        lines.append("")
+        
+        lines.append("First Name: " + f"{hist.patient.user.first_name} " if hist.patient else "N/A",)
+        lines.append("Last Name: " + f"{hist.patient.user.last_name} " if hist.patient else "N/A",)
         lines.append("Reason For Visit: "+str(hist.reason))
-        lines.append("Weight: "+str(hist.weight))
-        lines.append("Gender: "+str(hist.gender))
-        lines.append("Previous Operation: "+hist.previous_operation)
-        lines.append("Current Medicaion: "+hist.current_medication)
+        lines.append("User Name: "+str(hist.patient.user.username))
+        lines.append("Phone Number: "+str(hist.patient.user.phone_number))
+        lines.append("Age: " + f"{hist.patient.age_years} " if hist.patient else "N/A",)
+        lines.append("city: " + f"{hist.patient.city} " if hist.patient else "N/A",)
+        lines.append("address: " + f"{hist.patient.address} " if hist.patient else "N/A",)
+        lines.append("country: " + f"{hist.patient.country} " if hist.patient else "N/A",)
+        lines.append("blood_group: " + f"{hist.patient.blood_group} " if hist.patient else "N/A",)
+        lines.append("Register Date : " + f"{hist.patient.date_joined} " if hist.patient else "N/A",)
+        lines.append("date of birth: " + f"{hist.patient.date_of_birth} " if hist.patient else "N/A",)
+        lines.append("Weight: "+str(hist.weight)) 
+        lines.append("Gender: "+str(hist.patient.gender))   
         lines.append("Other Illness: "+hist.other_illness)
         lines.append("Other Information: "+hist.other_information)
-        lines.append("       ")
-        
+        lines.append("       ") 
 
     for line in lines:
         textob.textLine(line)
