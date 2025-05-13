@@ -57,98 +57,10 @@
     </section>
     <!-- /Home Banner -->
 
-    <!-- Clinic and Specialties -->
-    <section class="section section-specialities">
-        <div class="container-fluid">
-            <div class="section-header text-center">
-                <h2>Specialist Doctors</h2>
-                <p class="sub-title">Discover experts in various medical fields!</p>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-9">
-                    <!-- Specialties List -->
-                    <ul>
-                        <li>Dermatology</li>
-                        <li>Cardiology</li>
-                        <li>Neurology</li>
-                        <li>Gastroenterology</li>
-                        <li>Ophthalmology</li>
-                    </ul>
-                    <!-- /Specialties List -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- /Clinic and Specialties -->
+   
 
     <!-- Popular Section -->
-    <section class="section section-doctor">
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="section-header text-center">
-                    <h2>Book Our Doctors</h2>
-                    <p class="sub-title">Book confirmed doctor appointments online and avoid endless back-and-forth communication with our SMS and email notifications.</p>
-                </div>
-                <div class="col-lg-11">
-                    <!-- Doctor Slider -->
-                    <div class="doctor-slider slider">
-                        <!-- Doctor Widget -->
-                        {% for doctor in doctors %}
-                        <div class="profile-widget">
-                            <div class="pro-content">
-                                <h3 class="title">
-                                    <a href="{% url 'profile' doctor.id %}">Dr. {{ doctor.user.first_name }} {{ doctor.user.last_name }}</a> 
-                                    <i class="fas fa-check-circle verified"></i>
-                                </h3>
-                                <p class="speciality">{{ doctor.specialization.specialized_category }}</p>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <span class="d-inline-block average-rating">(17)</span>
-                                </div>
-                                <ul class="available-info">
-                                    <li>
-                                        <i class="fas fa-map-marker-alt"></i> {{ doctor.city }}
-                                    </li>
-                                    <li>
-                                        <i class="far fa-clock"></i> Joined on {{ doctor.date_joined|date:"F d, Y" }}
-                                    </li>
-                                </ul>
-                                <div class="row row-sm">
-                                    <div class="col-6">
-                                        <a href="{% url 'profile' doctor.id %}" class="btn view-btn">View Profile</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="#" class="btn book-btn">Book Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                        <!-- /Doctor Widget -->
-                    </div>
-                    <!-- /Doctor Slider -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- /Popular Section -->
 
-    <!-- About Us Section -->
-    <section class="section section-doctor">
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="section-header text-center">
-                    <h2>About Us</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla commodo dui in dui pellentesque, ut venenatis justo fringilla.</p>
-                    <!-- Add more content about your medical practice here -->
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- /About Us Section -->
 
     <!-- Contact Us Section -->
