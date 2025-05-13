@@ -6,38 +6,40 @@
     <div class="container-fluid">
     
     <div class="row">
-        <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
-        
+        <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar dct-dashbd-lft">
+    
             <!-- Profile Widget -->
             <div class="card widget-profile pat-widget-profile">
-                <div class="card-body">
-                    <div class="pro-widget-content">
-                        <div class="profile-info-widget">
-                            <a href="#" class="booking-doc-img">
-                                <img src="assets/img/patients/patient.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3><a href="patient-profile.html">{{current_patient.user.first_name}} {{current_patient.user.last_name}}</a></h3>
-                                <div class="patient-details">
-                                    <h5><b>Patient ID :</b> PT00{{current_patient.id}}</h5>
-                                    <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i>{{current_patient.city}}</h5>
-                                </div>
-                            </div>
+            <div class="card-body">
+            <div class="pro-widget-content">
+                <div class="profile-info-widget">
+                    <a href="#" class="booking-doc-img">
+                        <img src="{{current_patient.patient.profile_image.url}}" alt="User Image">
+                    </a>
+                    <div class="profile-det-info">
+                        <h3>{{current_patient.user.first_name}} {{current_patient.user.last_name}}</h3>
+                        
+                        <div class="patient-details">
+                            <h5><b>Patient ID :</b> PT-000-{{current_patient.id}}</h5>
+                            <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> {{current_patient.city}}</h5>
                         </div>
-                    </div>
-                    <div class="patient-info">
-                        <ul>
-                            <li>Phone <span>{{current_patient.user.phone_number}}</span></li>
-                            <li>Age <span>{{current_patient.age}}</span></li>
-                            <li>Blood Group <span>{{current_patient.blood_group}}</span></li>
-                            <li>Gender <span>{{current_patient.gender}}</span></li>
-                        </ul>
                     </div>
                 </div>
             </div>
+            <div class="patient-info">
+                <ul>
+                    <li>Phone <span>{{ current_patient.user.phone_number }}</span></li>
+                    <li>Age <span>{{ current_patient.age_years }} Years</span></li>
+                    <li>Blood Group <span>{{ current_patient.blood_group }}</span></li>
+                    <li>Gender <span>{{ current_patient.gender }}</span></li>
+                </ul>
+            </div>
+            </div>
+            </div>
             <!-- /Profile Widget -->
             
-        </div>
+            
+            </div>
     
         <div class="col-md-7 col-lg-8 col-xl-9">
             <div class="card">
@@ -57,7 +59,6 @@
                         <div class="col-sm-6 text-sm-right">
                             <div class="billing-info">
                                 <h4 class="d-block">{% now "jS F Y" %}</h4>
-                                <span class="d-block text-muted">#INV0001</span>
                             </div>
                         </div>
                     </div>
@@ -77,11 +78,8 @@
                                         <tr>
                                             <th style="min-width: 200px">Drug Name</th>
                                             <th style="min-width: 100px">Dosage</th>
-                                            <th style="min-width: 100px">Days</th>
+                                            <th style="min-width: 100px">Frequency</th>
                                             <th style="min-width: 100px">Action</th>
-                                            {% comment %} <th style="min-width: 100px">Days</th>
-                                            <th style="min-width: 100px;">Time</th> {% endcomment %}
-                                            {% comment %} <th style="min-width: 80px;"></th> {% endcomment %}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -92,13 +90,6 @@
                                             <td>{{prescribe_med.name}}</td>
                                             <td>{{prescribe_med.quantity}}</td>
                                             <td>{{prescribe_med.days}} </td>
-                                            {% comment %} <td>{{prescribe_med.days}}</td> {% endcomment %}
-                                            {% comment %} <td>
-                                                {{prescribe_med.morning}}+
-                                                {{prescribe_med.afternoon}}+
-                                                {{prescribe_med.evening}}+
-                                                {{prescribe_med.night}} 
-                                            </td> {% endcomment %}
                                             <td><a href="{% url 'deletePrescItem' prescribe_med.id %}" class="btn bg-danger-light trash"><i class="far fa-trash-alt"></i></a></td> 
                                         </tr>
                                         {% endif %}
@@ -115,32 +106,10 @@
                                                 <input class="form-control" type="text" name="quantity" placeholder="Dosage">
                                             </td>
                                             <td>
-                                                <input class="form-control" type="text" name="days" placeholder="Days">
+                                                <input class="form-control" type="text" name="days" placeholder="Frequency">
                                             </td>
-                                            {% comment %} <td>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" name="morning" value="morning"> Morning
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" name="afternoon" value="afternoon"> Afternoon
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" name="evening" value="evening"> Evening
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" name="night" value="night"> Night
-                                                    </label>
-                                                </div>
-                                            </td> {% endcomment %}
+                                           
                                             <td>
-                                                <!-- <a href="#" class="btn bg-danger-light trash"><i class="far fa-trash-alt"></i></a> -->
                                                 <div class="add-more-item">
                                                     <button type="submit" class="btn"><i class="fas fa-plus-circle"></i>Add</a>
                                                     </button>
@@ -162,7 +131,7 @@
                                
                                 <div class="sign-name">
                                     <p class="mb-0">( Dr. {{current_doctor.user.first_name}} {{current_doctor.user.last_name}} )</p>
-                                    <span class="text-muted">Signature</span>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -198,9 +167,7 @@
 <script>
     $( function() {
       
-      $( "#drugs" ).autocomplete({
-        source: "{% url 'autocomplete' %}",
-      });
+      
     } );
     </script>
 {% endblock content %}
